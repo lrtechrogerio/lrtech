@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Orçamento LRTech | Segurança Eletrônica</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="budget-container">
+        <div class="budget-inner">
+
+            <!-- AÇÕES GERAIS -->
+            <div class="actions-bar no-print">
+                <button id="btn-add-item" class="btn-action-general btn-primary-custom" type="button">
+                    <i class="bi bi-plus-circle"></i> Adicionar Item
+                </button>
+                <button id="btn-print" class="btn-action-general btn-outline-custom" type="button">
+                    <i class="bi bi-printer"></i> Imprimir / PDF
+                </button>
+            </div>
+
+            <!-- CABEÇALHO -->
+            <div class="header-top">
+                <div class="logo-area">
+                    <img class="logo-img" src="img/logo.png" alt="LRTech Logo">
+                    <div class="company-text">
+                        <h1>LRTECH <span>| SEGURANÇA ELETRÔNICA</span></h1>
+                        <div class="slogan">Soluções em CFTV, Alarme e Controle de Acesso</div>
+                    </div>
+                </div>
+                <div class="doc-info">
+                    <div class="doc-title">ORÇAMENTO</div>
+                    <div class="doc-details">
+                        <p>Nº <input type="text" id="doc-number" value="001" style="width:36px;border:none;background:transparent;font-weight:700;color:#1a4b6e;font-size:0.85rem;text-align:center;">/<input type="text" id="doc-year" value="2026" style="width:36px;border:none;background:transparent;font-weight:700;color:#1a4b6e;font-size:0.85rem;text-align:center;"></p>
+                        <p>Data: <input type="text" id="doc-date" value="" style="border:none;background:transparent;font-weight:500;color:#2c3e50;font-size:0.85rem;width:95px;padding:0;" placeholder="dd/mm/aaaa"></p>
+                        <p>Validade: <input type="number" id="doc-validade" value="15" min="1" style="width:38px;border:none;background:transparent;font-weight:600;color:#2c3e50;font-size:0.85rem;text-align:center;padding:0;"> dias</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DADOS DO CLIENTE -->
+            <div class="client-section">
+                <div class="client-item">
+                    <label for="client-name">Nome / Empresa</label>
+                    <input type="text" id="client-name" placeholder="Nome do cliente">
+                </div>
+                <div class="client-item">
+                    <label for="client-doc">CPF / CNPJ</label>
+                    <input type="text" id="client-doc" placeholder="000.000.000-00">
+                </div>
+                <div class="client-item">
+                    <label for="client-phone">Telefone</label>
+                    <input type="text" id="client-phone" placeholder="(00) 00000-0000">
+                </div>
+                <div class="client-item">
+                    <label for="client-city">Cidade / UF</label>
+                    <input type="text" id="client-city" placeholder="Praia Grande - SP">
+                </div>
+            </div>
+
+            <!-- TABELA DE PRODUTOS / SERVIÇOS -->
+            <h5 class="mb-3 fw-bold" style="color:#0a2b44;">
+                <i class="bi bi-cart3 me-2"></i>Itens do Orçamento
+            </h5>
+
+            <div class="items-table-wrapper">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th class="text-right">Qtd</th>
+                            <th class="text-right">Unit. (R$)</th>
+                            <th class="text-right">Total (R$)</th>
+                            <th class="no-print text-center"><i class="bi bi-gear"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="items-body">
+                        <!-- Linha 1 -->
+                        <tr data-id="1">
+                            <td class="text-center row-number">1</td>
+                            <td>
+                                <input type="text" class="input-desc"
+                                    value="Câmera IP Full HD 2MP Dome">
+                                <input type="text" class="input-desc-detail"
+                                    value="Infravermelho, PoE, Onvif">
+                            </td>
+                            <td>
+                                <select class="input-categoria">
+                                    <option value="">Categoria...</option>
+                                    <option value="CFTV/Câmeras" selected>CFTV/Câmeras</option>
+                                    <option value="CFTV/Gravadores">CFTV/Gravadores</option>
+                                    <option value="Alarme">Alarme</option>
+                                    <option value="Controle de Acesso">Controle de Acesso</option>
+                                    <option value="Cerca Elétrica">Cerca Elétrica</option>
+                                    <option value="Interfonia">Interfonia</option>
+                                    <option value="Instalação / M.O.">Instalação / M.O.</option>
+                                    <option value="Material Extra">Material Extra</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </td>
+                            <td><input type="number" class="input-num qty" value="4" min="0"></td>
+                            <td><input type="number" class="input-num unit" value="290" min="0" step="0.01"></td>
+                            <td class="text-right row-total">R$ 1.160,00</td>
+                            <td class="text-center no-print">
+                                <button class="btn-action" title="Remover item" onclick="removeRow(this)">&times;</button>
+                            </td>
+                        </tr>
+                        <!-- Linha 2 -->
+                        <tr data-id="2">
+                            <td class="text-center row-number">2</td>
+                            <td>
+                                <input type="text" class="input-desc" value="DVR 8 canais H.265">
+                                <input type="text" class="input-desc-detail"
+                                    value="Compressão H.265+, saída HDMI, acesso remoto">
+                            </td>
+                            <td>
+                                <select class="input-categoria">
+                                    <option value="">Categoria...</option>
+                                    <option value="CFTV/Câmeras">CFTV/Câmeras</option>
+                                    <option value="CFTV/Gravadores" selected>CFTV/Gravadores</option>
+                                    <option value="Alarme">Alarme</option>
+                                    <option value="Controle de Acesso">Controle de Acesso</option>
+                                    <option value="Cerca Elétrica">Cerca Elétrica</option>
+                                    <option value="Interfonia">Interfonia</option>
+                                    <option value="Instalação / M.O.">Instalação / M.O.</option>
+                                    <option value="Material Extra">Material Extra</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </td>
+                            <td><input type="number" class="input-num qty" value="1" min="0"></td>
+                            <td><input type="number" class="input-num unit" value="480" min="0" step="0.01"></td>
+                            <td class="text-right row-total">R$ 480,00</td>
+                            <td class="text-center no-print">
+                                <button class="btn-action" title="Remover item" onclick="removeRow(this)">&times;</button>
+                            </td>
+                        </tr>
+                        <!-- Linha 3 -->
+                        <tr data-id="3">
+                            <td class="text-center row-number">3</td>
+                            <td>
+                                <input type="text" class="input-desc" value="Instalação e configuração completa">
+                                <input type="text" class="input-desc-detail"
+                                    value="Cabeamento estruturado, parametrização, app mobile">
+                            </td>
+                            <td>
+                                <select class="input-categoria">
+                                    <option value="">Categoria...</option>
+                                    <option value="CFTV/Câmeras">CFTV/Câmeras</option>
+                                    <option value="CFTV/Gravadores">CFTV/Gravadores</option>
+                                    <option value="Alarme">Alarme</option>
+                                    <option value="Controle de Acesso">Controle de Acesso</option>
+                                    <option value="Cerca Elétrica">Cerca Elétrica</option>
+                                    <option value="Interfonia">Interfonia</option>
+                                    <option value="Instalação / M.O." selected>Instalação / M.O.</option>
+                                    <option value="Material Extra">Material Extra</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </td>
+                            <td><input type="number" class="input-num qty" value="1" min="0"></td>
+                            <td><input type="number" class="input-num unit" value="350" min="0" step="0.01"></td>
+                            <td class="text-right row-total">R$ 350,00</td>
+                            <td class="text-center no-print">
+                                <button class="btn-action" title="Remover item" onclick="removeRow(this)">&times;</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botão adicionar abaixo da tabela -->
+            <div class="no-print mb-3">
+                <button class="btn-add-row" onclick="addRow()" type="button">
+                    <i class="bi bi-plus-lg"></i> Adicionar novo item
+                </button>
+            </div>
+
+            <!-- TOTAIS -->
+            <div class="total-area">
+                <div class="total-card">
+                    <div class="total-line">
+                        <span class="label">Subtotal</span>
+                        <span id="subtotal-value" class="currency">R$ 0,00</span>
+                    </div>
+                    <div class="total-line">
+                        <span class="label">Desconto (R$)</span>
+                        <input type="number" id="input-discount" value="0" min="0" step="0.01"
+                            placeholder="0,00">
+                    </div>
+                    <div class="total-line total">
+                        <span class="label">TOTAL</span>
+                        <span id="total-value" class="currency">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONDIÇÕES COMERCIAIS -->
+            <div class="conditions">
+                <div class="condition-block">
+                    <div class="condition-title">Forma de Pagamento</div>
+                    <textarea rows="2"
+                        placeholder="Ex: À vista - desconto especial (consulte condições)">À vista - desconto especial (consulte condições)</textarea>
+                </div>
+                <div class="condition-block">
+                    <div class="condition-title">Validade do Orçamento</div>
+                    <textarea rows="2" id="txt-validade"
+                        placeholder="Ex: 15 dias a partir da data de emissão"></textarea>
+                </div>
+            </div>
+
+            <!-- ESCOPO DO SERVIÇO -->
+            <div class="scope-box">
+                <div class="scope-title">ESCOPO DO SERVIÇO</div>
+                <textarea rows="4">Fornecimento e instalação de sistema de videomonitoramento composto por 4 câmeras IP Full HD 2MP tipo Dome, DVR 8 canais H.265 com capacidade para expansão, cabeamento estruturado, configuração completa do sistema e acesso remoto via aplicativo no celular.
+
+Todos os equipamentos possuem garantia de fábrica. A instalação é realizada por técnicos especializados da LRTech Segurança Eletrônica.</textarea>
+            </div>
+
+            <!-- ASSINATURAS -->
+            <div class="signatures">
+                <div class="signature-item">
+                    <div class="signature-label">LRTech Segurança Eletrônica</div>
+                    <div class="signature-label" style="font-weight:normal; font-size:0.7rem;">Responsável
+                        Técnico</div>
+                    <div class="signature-line">Assinatura / Carimbo</div>
+                </div>
+                <div class="signature-item">
+                    <div class="signature-label">Cliente</div>
+                    <div class="signature-label" style="font-weight:normal; font-size:0.7rem;">Aprovação do
+                        Orçamento</div>
+                    <div class="signature-line">Assinatura e Data</div>
+                </div>
+            </div>
+
+            <!-- RODAPÉ -->
+            <div class="footer-note">
+                <span>LRTech Segurança Eletrônica</span>
+                <span>|</span>
+                <span>Praia Grande - SP</span>
+            </div>
+
+            <div class="footer-legal">
+                Este orçamento é válido pelo prazo estipulado. Os preços e condições podem ser renegociados mediante
+                contato.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
